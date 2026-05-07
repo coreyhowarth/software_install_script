@@ -6,6 +6,12 @@ function Get-AllFiles {
     Get-ChildItem -Path $installerPath -File -ErrorAction Stop
 }
 
+if (-not (Test-Path $installerPath)) {
+    Write-Host "Installer path not found: $installerPath" -ForegroundColor Red
+    Pause
+    exit
+}
+
 # Function to display the menu
 function Show-Menu {
     cls
@@ -93,6 +99,8 @@ do {
     }
 	
 } while ($choice -ne '0')
+
+Pause
 
 <#
 .SYNOPSIS
